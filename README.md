@@ -1,48 +1,42 @@
 # QExchange
 
-## Introduction
-**QExchange** is an advanced digital currency exchange platform designed to streamline the process of trading cryptocurrencies. Built with the latest industry standards, this platform emphasizes clean, secure coding practices to ensure a safe trading environment, crucial for maintaining financial integrity and trust.
+A collaborative Go backend for a cryptocurrency-exchange coursework project. It includes user accounts, authentication, banking information, support tickets, cryptocurrency management, and trading-related APIs.
 
-## Technology Stack
-- Docker
-- Golang 1.21.3
-- Echo 4.11.3
-- Gorm 1.25.5
-- PostgreSQL 16.1
-- echo-swagger 1.4.1
-- testify
-- sqlite
+## Stack and structure
 
-## Setup
-First install the dependencies, then:
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/Quera-Go-Zilla/QExchange-System.git
-   ```
+- Go 1.21.3, Echo, GORM, and PostgreSQL.
+- `handlers/`, `server/`: HTTP handlers and route registration.
+- `services/`, `models/`: application logic and data models.
+- `database/`: connections and demonstration seed data.
+- `middlewares/`: authentication and access checks.
+- `docs/`: generated Swagger documentation.
+- `test/`: existing service tests.
 
-2. **Navigate to the Project Directory**
-   ```bash
-   cd QExchange-System
-   ```
+## Run locally
 
-3. **Start the Project**
-   ```bash
-   sudo docker-compose up --build
-   ```
+Install Docker with Compose support. Review the database and authentication configuration before starting; any committed environment values are historical development settings and must be replaced for a real deployment.
 
-4. **Access the endpoints** at `localhost:8080`.
-
-## Documentation
-To generate the docs run this in the root directory:
-   ```bash
-   swag init --parseDependency
-   ```
-Then start the project using docker-compose and access the docs at this url:
-
-[http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
-   
-## Testing
-Run the following command in the root directory of the project:
-```bash
-go test ./test
+```sh
+git clone https://github.com/sobhanala/QExchange-System.git
+cd QExchange-System
+docker compose up --build
 ```
+
+The original configuration exposes the API at `http://localhost:8080`. Open `/swagger/index.html` for API documentation. Startup applies migrations and inserts demonstration data when the user table is empty.
+
+For a native Go launch, review `database/connection.go` and the seed SQL path in `main.go`; the container image supplies files expected by the original startup layout.
+
+## Existing tests and docs
+
+```sh
+go test ./test
+swag init --parseDependency
+```
+
+Tests require the dependencies and database setup used by their fixtures. Documentation generation requires the Swag CLI. These commands were identified from the source; a complete exchange deployment has not been validated by this README update.
+
+This is a coursework prototype and has not been audited for handling real funds.
+
+## Project credits
+
+This is Sobhan Alaeddini's portfolio fork of [Quera-Go-Zilla/QExchange-System](https://github.com/Quera-Go-Zilla/QExchange-System). The project was developed collaboratively; the upstream repository and Git history retain the original contributor credits. Documentation in this fork is maintained independently.
